@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/bootstrap/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./mselect/chosen.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <!-- <link rel="stylesheet" href="./jquery-ui.css"> -->
+
+  <title>Form Validation</title>
+</head>
+
+<body>
+  <div class="container my-5">
+    <h1 class="text-center border border-solid border-black rounded-lg p-2 bg-dark text-white">Registration Form</h1>
+    <div class="row">
+      <div class="col">
+        <form class="border border-solid border-black rounded-lg p-4 bg-light" onsubmit="return validate()" action="result" method="post" >
+          <div class="form-group">
+            <label for="fname">First name</label>
+            <input type="text" class="form-control" id="fname" placeholder="Enter first name" name="firstname">
+            <small id="fnameHelp" class="form-text"></small>
+          </div>
+          <div class="form-group">
+            <label for="lname">Last name</label>
+            <input type="text" class="form-control" id="lname" placeholder="Enter last name" name="lastname">
+            <small id="lnameHelp" class="form-text"></small>
+          </div>
+          <div class="form-group">
+            <label for="mobile-number">Mobile number</label>
+            <input type="text" class="form-control" id="mobile-number" placeholder="Enter mobile number" name="mobile">
+            <small id="mobileHelp" class="form-text"></small>
+          </div>
+          <div class="form-group">
+            <label for="email-address">Email address</label>
+            <input type="email" class="form-control" id="email-address" placeholder="Enter email" name="email">
+            <small id="emailHelp" class="form-text"></small>
+          </div>
+          <div class="form-group">
+            <label for="dob">Date of Birth</label><br>
+            <input type="text" id="dob" name="dob">
+            <span id="calendar-icon" class="fa fa-calendar"></span>
+            <small id="dateHelp" class="form-text"></small>
+          </div>
+          <div class="form-group">
+            <label for="address">Residential address</label>
+            <textarea type="email" class="form-control" id="address" placeholder="Enter address" name="address"></textarea>
+            <small id="addressHelp" class="form-text"></small>
+          </div>
+
+          <div class="form-group">
+            <label class="d-block">Gender</label>
+            <input type="radio" name="gender" class="gender" id="male" value="male">
+            <label for="male">Male</label>
+            <input type="radio" name="gender" class="gender" id="female" value="female">
+            <label for="female">Female</label>
+            <input type="radio" name="gender" class="gender" id="others" value="others">
+            <label for="others">Others</label>
+            <small id="genderHelp" class="form-text"></small>
+          </div>
+          <div class="form-group">
+            <label for="state">City</label>
+            <select id="state" class="form-control" name="city">
+              <option>Ahmedabad</option>
+              <option>Lucknow</option>
+              <option>Surat</option>
+              <option>Noida</option>
+            </select>
+            <small id="stateHelp" class="form-text"></small>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+            <small id="passwordHelp" class="form-text"></small>
+          </div>
+          <div class="form-group">
+            <label for="cnf-password">Confirm password</label>
+            <input type="password" class="form-control" id="cnf-password" placeholder="Confirm password">
+            <small id="cnfpasswordHelp" class="form-text"></small>
+          </div>
+          <input type="submit" value="Submit" class="btn btn-outline-primary form-control" id="submit-btn">
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="./jQuery 3.6.4.js"></script>
+  <script src="./index.js"></script>
+  <script src="./mselect/chosen.jquery.min.js"></script>
+  <script src="./jquery-ui.js"></script>
+</body>
+
+</html>

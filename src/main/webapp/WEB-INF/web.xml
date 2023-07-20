@@ -1,0 +1,18 @@
+<web-app>
+  <servlet>
+    <servlet-name>userController</servlet-name>
+    <servlet-class>controller.UserController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>userController</servlet-name>
+    <url-pattern>/result</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <filter-name>myFilter</filter-name>
+    <filter-class>config.MyFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>myFilter</filter-name>
+    <url-pattern>/result</url-pattern>
+  </filter-mapping>
+</web-app>
