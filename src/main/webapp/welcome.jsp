@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@page import="model.User, java.util.*" %>
+<%@page import="model.User, java.util.*, dao.UserDao, utils.ConnectionProvider, java.sql.*" %>
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" >
 </head>
@@ -9,11 +9,15 @@
 <h2>Registration Detail</h2>
 </div>
 <%
-    List<User> users = (List)session.getAttribute("users");
+    UserDao userDao = new UserDao(ConnectionProvider.getConnection());
+    List<User> users = userDao.getAllUsers();
+    request.setAttribute("users", users);
+    System.out.println(users);
 %>
 <div class="container p-0">
 <table class="table table-bordered text-center">
     <tr>
+    <th>Id</th>
     <th>Firstname</th>
     <th>Lastname</th>
     <th>Email</th>
@@ -27,6 +31,7 @@
     </tr>
     <c:forEach items="${users}" var="user">
         <tr>
+        <td><c:out value="${user.getId()}" /></td>
         <td><c:out value="${user.getFirstName()}" /></td>
         <td><c:out value="${user.getLastName()}" /></td>
         <td><c:out value="${user.getEmail()}" /></td>

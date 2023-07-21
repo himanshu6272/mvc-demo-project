@@ -1,6 +1,8 @@
 package model;
 
 public class User {
+
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
@@ -10,6 +12,35 @@ public class User {
     private String gender;
     private String city;
     private String password;
+
+    public User() {
+
+    }
+
+    public User(String firstName, String lastName, String email, String mobile, String dob, String address, String gender, String city, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.mobile = mobile;
+        this.dob = dob;
+        this.address = address;
+        this.gender = gender;
+        this.city = city;
+        this.password = password;
+    }
+
+    public User(int id, String firstName, String lastName, String email, String mobile, String dob, String address, String gender, String city, String password) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.mobile = mobile;
+        this.dob = dob;
+        this.address = address;
+        this.gender = gender;
+        this.city = city;
+        this.password = password;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -83,15 +114,23 @@ public class User {
         this.gender = gender;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    @Override
     public String toString() {
         return "User{" +
-                "firstName='" + firstName + '\'' +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", mobile='" + mobile + '\'' +
-                ", dob=" + dob +
+                ", dob='" + dob + '\'' +
                 ", address='" + address + '\'' +
                 ", gender='" + gender + '\'' +
                 ", city='" + city + '\'' +
