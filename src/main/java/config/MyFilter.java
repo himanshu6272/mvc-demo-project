@@ -1,7 +1,9 @@
 package config;
 
+import dao.UserDao;
 import model.User;
 import org.apache.log4j.Logger;
+import utils.ConnectionProvider;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -13,10 +15,9 @@ public class MyFilter implements Filter {
 
     public static final Logger logger = Logger.getLogger(MyFilter.class);
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpSession session = req.getSession();
-        List<User> users = (List)session.getAttribute("users");
-        String newUserEmail = req.getParameter("email");
+        UserDao userDao = new UserDao(ConnectionProvider.getConnection());
+        List<User> users = userDao.getAllUsers();
+        String newUserEmail = request.getParameter("email");
         boolean flag = false;
         if (users != null) {
             flag = users.stream().anyMatch(user -> user.getEmail().equals(newUserEmail));
