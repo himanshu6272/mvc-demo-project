@@ -49,7 +49,18 @@ public class UserDao {
         PreparedStatement preparedStatement = this.connection.prepareStatement(query);
         ResultSet set = preparedStatement.executeQuery();
         while (set.next()){
-            User user = new User(set.getInt(1), set.getString(2), set.getString(3), set.getString(4), set.getString(5), set.getString(6), set.getString(7), set.getString(8), set.getString(9), set.getString(10));
+            User user = new User(
+                    set.getInt(1),
+                    set.getString(2),
+                    set.getString(3),
+                    set.getString(4),
+                    set.getString(5),
+                    set.getString(6),
+                    set.getString(7),
+                    set.getString(8),
+                    set.getString(9),
+                    set.getString(10)
+            );
             users.add(user);
         }
     }catch (Exception e){
