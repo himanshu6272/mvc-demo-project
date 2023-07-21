@@ -1,7 +1,9 @@
 package controller;
 
+import dao.UserDao;
 import model.User;
 import org.apache.log4j.Logger;
+import utils.ConnectionProvider;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,38 +17,37 @@ import java.util.List;
 
 public class UserController extends HttpServlet {
 
-    List<User> users= new ArrayList<>();
+//    List<User> users= new ArrayList<>();
 
     public static final Logger logger = Logger.getLogger(UserController.class);
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        String firstname = req.getParameter("firstname");
+        String lastname = req.getParameter("lastname");
+        String email = req.getParameter("email");
+        String mobile = req.getParameter("mobile");
+        String password = req.getParameter("password");
+        String city = req.getParameter("city");
+        String address = req.getParameter("address");
+        String dob = req.getParameter("dob");
+        String gender = req.getParameter("gender");
+//        users.add(user);
+        User user = new User(firstname, lastname, email, mobile, dob, address, gender, city, password);
 
-//        Map<String, User> users= new HashMap<String, User>();
-        User user = new User();
-        user.setFirstName(req.getParameter("firstname"));
-        user.setLastName(req.getParameter("lastname"));
-        user.setEmail(req.getParameter("email"));
-        user.setMobile(req.getParameter("mobile"));
-        user.setPassword(req.getParameter("password"));
-        user.setCity(req.getParameter("city"));
-        user.setAddress(req.getParameter("address"));
-        user.setDob(req.getParameter("dob"));
-        user.setGender(req.getParameter("gender"));
-//        users.put(user.getEmail(), user);
-        users.add(user);
+        UserDao userDao = new UserDao(ConnectionProvider.getConnection());
 
-        HttpSession session = req.getSession();
-        session.setAttribute("users", users);
+        if (userDao.registerUser(user)){
+            resp.setContentType("text/html");
+            PrintWriter out = resp.getWriter();
+            out.println("<h1>User Registered Successfully !!!!!</h1>");
+            out.println("<a href='welcome.jsp'>view user detail</a>");
 
-//        System.out.println(user);
-//        System.out.println(users);
+            logger.info("User Registered Successfully.....");
+        }else {
+            logger.error("There might be something wrong in creating user........");
+        }
 
-        resp.setContentType("text/html");
-        PrintWriter out = resp.getWriter();
-        out.println("<h1>User Registered Successfully !!!!!</h1>");
-        out.println("<a href='welcome.jsp'>view user detail</a>");
-
-        logger.info("User Registered Successfully.....");
-
+//        HttpSession session = req.getSession();
+//        session.setAttribute("users", users);
     }
 }
